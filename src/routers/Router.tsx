@@ -1,9 +1,9 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
-import { Login } from '@/screens/auth'
-import { Home, NotFound } from '@/screens'
 import { Layout } from '@/components/Layouts'
+import { Home, NotFound } from '@/screens'
+import { Login } from '@/screens/auth'
 
 export const Router = () => {
   return (

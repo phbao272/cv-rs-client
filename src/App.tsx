@@ -1,8 +1,9 @@
+import { CssBaseline } from '@mui/material'
 import React, { Suspense } from 'react'
-import { Router } from '@/routers'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ToastContainer } from 'react-toast'
-import { CssBaseline, ThemeProvider } from '@mui/material'
+
+import { Router } from '@/routers'
 
 const queryClient = new QueryClient()
 

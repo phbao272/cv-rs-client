@@ -9,16 +9,26 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import * as React from 'react'
 
+import { useAuth } from '@/libs/hooks'
 const theme = createTheme()
 
 export const Login = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const { login, auth } = useAuth()
+
+  console.log('auth', auth)
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    })
+
+    try {
+      await login({
+        email: data.get('email') as string,
+        password: data.get('password') as string,
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (

@@ -1,3 +1,5 @@
+import { IUser } from './user'
+
 export interface IUserLoginArgs {
   email: string
   password: string
@@ -10,5 +12,5 @@ export interface IUserToken {
 }
 
 export interface IUserLoginRes extends IUserToken {
-  user: any
+  user: IUser
 }

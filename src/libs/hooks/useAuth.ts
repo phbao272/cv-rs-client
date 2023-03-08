@@ -4,7 +4,7 @@ import { useCallback } from 'react'
 
 import { tokenAtom, userAtom } from '@/libs/atoms'
 
-import { loginApi, userApi } from '../apis'
+import { loginApi, logoutApi, userApi } from '../apis'
 import { IUserLoginArgs } from '../types'
 export const useAuth = () => {
   const [user, setUser] = useAtom(userAtom)
@@ -19,17 +19,19 @@ export const useAuth = () => {
     setToken(token)
   }
 
+  const logout = async () => {
+    await logoutApi()
+    setUser(null)
+    setToken(null)
+  }
+
   const fetchUser = useAtomCallback(
     useCallback(async () => {
       try {
         const token = JSON.parse(localStorage.getItem('user-token') || 'null')
 
-        console.log('token', token)
-
         if (token?.access_token) {
           const res = await userApi()
-
-          console.log('res', res.data)
 
           setUser(res?.data)
         }
@@ -42,6 +44,8 @@ export const useAuth = () => {
   return {
     auth,
     login,
+    logout,
     fetchUser,
+    user,
   }
 }

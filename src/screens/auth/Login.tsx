@@ -8,14 +8,20 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import * as React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '@/libs/hooks'
 const theme = createTheme()
 
 export const Login = () => {
   const { login, auth } = useAuth()
+  const navigate = useNavigate()
 
-  console.log('auth', auth)
+  React.useEffect(() => {
+    if (auth) {
+      navigate('/')
+    }
+  }, [auth])
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -26,6 +32,8 @@ export const Login = () => {
         email: data.get('email') as string,
         password: data.get('password') as string,
       })
+
+      navigate('/')
     } catch (error) {
       console.log(error)
     }

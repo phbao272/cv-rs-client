@@ -1,4 +1,4 @@
-import { Button, styled, Typography } from '@mui/material'
+import { Box, Button, Container, styled, Typography } from '@mui/material'
 import { Stack } from '@mui/system'
 import React from 'react'
 
@@ -13,45 +13,47 @@ export const Header = () => {
   const { auth } = useAuth()
 
   return (
-    <Stack
-      direction="row"
-      sx={{
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingLeft: 20,
-        paddingRight: 20,
-      }}
-    >
-      <BoxAlignCenter>
-        <Typography
+    <Box sx={{ backgroundColor: '#fff' }}>
+      <Container maxWidth="xl">
+        <Stack
+          direction="row"
           sx={{
-            fontSize: '20px',
-            fontWeight: 'bold',
+            alignItems: 'center',
+            justifyContent: 'space-between',
           }}
         >
-          B-CV
-        </Typography>
+          <BoxAlignCenter>
+            <Typography
+              sx={{
+                fontSize: '20px',
+                fontWeight: 'bold',
+              }}
+            >
+              B-CV
+            </Typography>
 
-        <Stack direction="row" sx={{ marginLeft: '40px', gap: '20px' }}>
-          <NavbarItem>Việc làm</NavbarItem>
-          <NavbarItem>Hồ sơ & CV</NavbarItem>
-          <NavbarItem>Công ty</NavbarItem>
+            <Stack direction="row" sx={{ marginLeft: '40px', gap: '20px' }}>
+              <NavbarItem>Việc làm</NavbarItem>
+              <NavbarItem>Hồ sơ & CV</NavbarItem>
+              <NavbarItem>Công ty</NavbarItem>
+            </Stack>
+          </BoxAlignCenter>
+
+          {auth ? (
+            <MenuProfile />
+          ) : (
+            <BoxAlignCenter sx={{ gap: '20px' }}>
+              <StyledLink to="/login">
+                <Button variant="outlined">Đăng nhập</Button>
+              </StyledLink>
+              <StyledLink to="/sign-up">
+                <Button variant="contained">Đăng ký</Button>
+              </StyledLink>
+            </BoxAlignCenter>
+          )}
         </Stack>
-      </BoxAlignCenter>
-
-      {auth ? (
-        <MenuProfile />
-      ) : (
-        <BoxAlignCenter sx={{ gap: '20px' }}>
-          <StyledLink to="/login">
-            <Button variant="outlined">Đăng nhập</Button>
-          </StyledLink>
-          <StyledLink to="/sign-up">
-            <Button variant="contained">Đăng ký</Button>
-          </StyledLink>
-        </BoxAlignCenter>
-      )}
-    </Stack>
+      </Container>
+    </Box>
   )
 }
 

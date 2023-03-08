@@ -45,9 +45,9 @@ export const routers: IRoute[] = [
 ]
 
 export const Router = () => {
-  const { user, loading } = useAuth()
+  const { user, isFetchAuth } = useAuth()
 
-  if (loading) {
+  if (isFetchAuth) {
     return <FullScreenLoading />
   }
 

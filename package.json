@@ -13,8 +13,10 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.10.3",
     "axios": "^0.27.2",
+    "jotai": "^2.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-query": "^3.39.2",

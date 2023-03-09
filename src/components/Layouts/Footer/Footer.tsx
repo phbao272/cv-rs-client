@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { BoxAlignCenter } from '@/styles'
+
 export const Footer = () => {
-  return <div>Footer</div>
+  return <BoxAlignCenter>Footer</BoxAlignCenter>
 }

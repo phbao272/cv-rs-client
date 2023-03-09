@@ -6,9 +6,9 @@ import { Footer } from './Footer'
 import { Header } from './Header'
 export const Layout = () => {
   return (
-    <div>
+    <div style={{ backgroundColor: '#f2f2f2' }}>
       <Header />
-      <Container maxWidth="xl">
+      <Container maxWidth="lg" sx={{ minHeight: '100vh' }}>
         <Outlet />
       </Container>
       <Footer />

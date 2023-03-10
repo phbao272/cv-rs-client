@@ -1,6 +1,6 @@
 import { CssBaseline } from '@mui/material'
+import { QueryClientProvider } from '@tanstack/react-query'
 import React, { Suspense, useEffect } from 'react'
-import { QueryClientProvider } from 'react-query'
 import { ToastContainer } from 'react-toast'
 
 import { queryClient } from '@/libs/react-query'

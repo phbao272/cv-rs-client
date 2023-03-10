@@ -1,11 +1,30 @@
-import { Grid, Paper, TextField } from '@mui/material'
+import { Grid, Paper } from '@mui/material'
 import { Box } from '@mui/system'
+import { useQuery } from '@tanstack/react-query'
 import React from 'react'
+import { Control, Controller, FieldErrors } from 'react-hook-form'
 
+import { MultiSelect, OptionType } from '@/components/Input'
+import { ISkill } from '@/libs/types'
+
+import { ResumeType } from '../types'
 import { ContainerInput, TextHeader } from './styled'
 import { TextLabelInput } from './TextLabelInput'
 
-const SkillDevelop = () => {
+interface Props {
+  control: Control<ResumeType, object>
+  errors: FieldErrors<ResumeType>
+}
+
+const SkillDevelop: React.FC<Props> = ({ control }) => {
+  const [skillOptions, setSkillOptions] = React.useState<OptionType[]>([])
+
+  useQuery<ISkill[]>(['skill'], {
+    onSuccess(data) {
+      setSkillOptions(data.map((item) => ({ label: item.name, value: item.id })))
+    },
+  })
+
   return (
     <Box
       sx={{
@@ -14,6 +33,7 @@ const SkillDevelop = () => {
           md: '90%',
           lg: '80%',
         },
+        marginTop: '30px',
       }}
     >
       <TextHeader>Kỹ năng lập trình</TextHeader>
@@ -22,23 +42,15 @@ const SkillDevelop = () => {
         <Grid container spacing={4}>
           <Grid item xs={9}>
             <ContainerInput>
-              <TextLabelInput label={'Họ và tên'} />
-              <TextField required fullWidth />
+              <TextLabelInput label="Liệt kê các kỹ năng" />
+              <Controller
+                name={`skills`}
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <MultiSelect options={skillOptions} onChange={onChange} value={value} />
+                )}
+              />
             </ContainerInput>
-
-            <ContainerInput>
-              <TextLabelInput label={'Email'} />
-              <TextField required fullWidth />
-            </ContainerInput>
-
-            <ContainerInput>
-              <TextLabelInput label={'Điện thoại'} />
-              <TextField required fullWidth />
-            </ContainerInput>
-          </Grid>
-
-          <Grid item xs={3}>
-            <Box sx={{ height: '200px', backgroundColor: 'gray' }}>Anh dai dien</Box>
           </Grid>
         </Grid>
       </Paper>

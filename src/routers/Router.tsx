@@ -8,6 +8,7 @@ import { ROLE } from '@/libs/utils/constant'
 import { Home, NotFound } from '@/screens'
 import { Login } from '@/screens/auth'
 import { Forbidden } from '@/screens/forbidden'
+import { JobDetail, JobList } from '@/screens/job'
 import { ResumeDetail } from '@/screens/resume'
 
 import { RequiredAuth } from './RequiredAuth'
@@ -28,6 +29,22 @@ const resumeRouters: IRoute[] = [
   },
 ]
 
+const jobRouters: IRoute[] = [
+  {
+    path: '/my-job',
+    element: <JobList />,
+    permissions: [ROLE['COMPANY']],
+    requiredAuth: true,
+  },
+
+  {
+    path: '/my-job/:id',
+    element: <JobDetail />,
+    permissions: [ROLE['COMPANY']],
+    requiredAuth: true,
+  },
+]
+
 export const routers: IRoute[] = [
   {
     path: '/',
@@ -42,6 +59,7 @@ export const routers: IRoute[] = [
   },
 
   ...resumeRouters,
+  ...jobRouters,
 ]
 
 export const Router = () => {

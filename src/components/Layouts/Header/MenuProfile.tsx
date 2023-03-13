@@ -12,9 +12,19 @@ import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '@/libs/hooks'
+import { ROLE } from '@/libs/utils/constant'
+
+interface IMenuItem {
+  title: string
+  onClick: () => void
+}
+
+interface IMenuProfile {
+  [x: string]: IMenuItem[]
+}
 
 export function MenuProfile() {
-  const { auth, logout } = useAuth()
+  const { auth, logout, user } = useAuth()
   const navigate = useNavigate()
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -40,6 +50,35 @@ export function MenuProfile() {
   const handleGoToResume = () => {
     navigate('/my-resume')
     handleClose()
+  }
+
+  const handleGoToJob = () => {
+    navigate('/my-job')
+    handleClose()
+  }
+
+  const menuProfile: IMenuProfile = {
+    [ROLE['CANDIDATE']]: [
+      {
+        title: 'Quản lý CV',
+        onClick: handleGoToResume,
+      },
+      {
+        title: 'Việc làm đã ứng tuyển',
+        onClick: handleClose,
+      },
+    ],
+
+    [ROLE['COMPANY']]: [
+      {
+        title: 'Quản lý công việc',
+        onClick: handleGoToJob,
+      },
+      {
+        title: 'Danh sách ứng tuyển',
+        onClick: handleClose,
+      },
+    ],
   }
 
   return (
@@ -93,8 +132,12 @@ export function MenuProfile() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleGoToResume}>Quản lý CV</MenuItem>
-        <MenuItem onClick={handleClose}>Việc làm đã ứng tuyển</MenuItem>
+        {menuProfile[user?.role as unknown as string]?.map((item, index) => (
+          <MenuItem key={index} onClick={item.onClick}>
+            {item.title}
+          </MenuItem>
+        ))}
+
         <Divider />
 
         <MenuItem onClick={handleClose}>

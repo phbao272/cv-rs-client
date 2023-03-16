@@ -77,6 +77,24 @@ const ProfileInformation: React.FC<Props> = ({ control, errors }) => {
             </ContainerInput>
 
             <ContainerInput>
+              <TextLabelInput label={'Ngày sinh'} />
+              <Controller
+                name="email"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <TextField
+                    required
+                    fullWidth
+                    error={!!errors?.email?.message}
+                    helperText={errors?.email?.message}
+                    onChange={onChange}
+                    value={value}
+                  />
+                )}
+              />
+            </ContainerInput>
+
+            <ContainerInput>
               <TextLabelInput label={'Điện thoại'} />
               <Controller
                 name="phone_number"
@@ -96,6 +114,17 @@ const ProfileInformation: React.FC<Props> = ({ control, errors }) => {
 
             <ContainerInput>
               <TextLabelInput label={'Thành phố'} />
+              <Controller
+                name="city"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Select fullWidth options={locationOptions} onChange={onChange} value={value} />
+                )}
+              />
+            </ContainerInput>
+
+            <ContainerInput>
+              <TextLabelInput label={'Trình độ học vấn'} />
               <Controller
                 name="city"
                 control={control}

@@ -7,3 +7,11 @@ export const TextALine = styled(Typography)({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 })
+
+export const TextHeader = styled(Typography)({
+  fontWeight: 'bold',
+  fontSize: '24px',
+  textTransform: 'uppercase',
+  color: '#333',
+  padding: '24px 0',
+})

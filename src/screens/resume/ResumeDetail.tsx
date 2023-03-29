@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form'
 
 import { request } from '@/libs/request'
 import { IResume } from '@/libs/types'
+import { formatDate } from '@/libs/utils'
 
 import { Guide, ProfileInformation, SkillDevelop } from './components'
 import { ResumeSchema, ResumeType } from './types'
@@ -24,7 +25,12 @@ const ResumeDetail = () => {
       setValue('name', data.name)
       setValue('email', data.email)
       setValue('phone_number', data.phone_number)
-      setValue('city', data.m_location_id)
+      setValue('birthday', new Date(data.birthday))
+
+      setValue('m_location_id', data.m_location_id)
+      setValue('m_education_level_id', data.m_education_level_id)
+      setValue('m_experience_id', data.m_experience_id)
+      setValue('m_working_form_id', data.m_working_form_id)
 
       setValue(
         'skills',
@@ -53,7 +59,10 @@ const ResumeDetail = () => {
 
   const onSubmit = async (data: ResumeType) => {
     console.log('data', data)
-    const value = { ...data, m_location_id: data.city }
+    const value = {
+      ...data,
+      birthday: formatDate(data.birthday, 'yyyy-MM-dd'),
+    }
 
     try {
       let res

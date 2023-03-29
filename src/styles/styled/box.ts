@@ -17,6 +17,12 @@ export const BoxAlignCenter = styled(Box)({
   alignItems: 'center',
 })
 
+export const BoxAlignCenterVertical = styled(Box)({
+  display: 'flex',
+  alignItems: 'center',
+  flexDirection: 'column',
+})
+
 export const ChipStyled = styled(Chip)({
   borderRadius: '4px',
   fontSize: '12px',

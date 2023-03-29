@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { Control, Controller, FieldErrors } from 'react-hook-form'
 
-import { Input, OptionType, Select } from '@/components/Input'
+import { DatePicker, Input, OptionType, Select } from '@/components/Input'
 import { IBaseMaster } from '@/libs/types'
 
 import { ResumeType } from '../types'
@@ -18,10 +18,31 @@ interface Props {
 
 const ProfileInformation: React.FC<Props> = ({ control, errors }) => {
   const [locationOptions, setLocationOptions] = React.useState<OptionType[]>([])
+  const [educationOptions, setEducationOptions] = React.useState<OptionType[]>([])
+  const [experienceOptions, setExperienceOptions] = React.useState<OptionType[]>([])
+  const [WorkingFormOptions, setWorkingFormOptions] = React.useState<OptionType[]>([])
 
   useQuery<IBaseMaster[]>(['location'], {
     onSuccess(data) {
       setLocationOptions(data.map((item) => ({ label: item.name, value: item.id })))
+    },
+  })
+
+  useQuery<IBaseMaster[]>(['education-level'], {
+    onSuccess(data) {
+      setEducationOptions(data.map((item) => ({ label: item.name, value: item.id })))
+    },
+  })
+
+  useQuery<IBaseMaster[]>(['experience'], {
+    onSuccess(data) {
+      setExperienceOptions(data.map((item) => ({ label: item.name, value: item.id })))
+    },
+  })
+
+  useQuery<IBaseMaster[]>(['working-form'], {
+    onSuccess(data) {
+      setWorkingFormOptions(data.map((item) => ({ label: item.name, value: item.id })))
     },
   })
 
@@ -78,20 +99,22 @@ const ProfileInformation: React.FC<Props> = ({ control, errors }) => {
 
             <ContainerInput>
               <TextLabelInput label={'Ngày sinh'} />
-              <Controller
-                name="email"
-                control={control}
-                render={({ field: { onChange, value } }) => (
-                  <TextField
-                    required
-                    fullWidth
-                    error={!!errors?.email?.message}
-                    helperText={errors?.email?.message}
-                    onChange={onChange}
-                    value={value}
-                  />
-                )}
-              />
+              <Box style={{ flex: 1 }}>
+                <Controller
+                  name="birthday"
+                  control={control}
+                  render={({ field: { onChange, value } }) => (
+                    <DatePicker
+                      required
+                      fullWidth
+                      error={!!errors?.birthday?.message}
+                      helperText={errors?.birthday?.message}
+                      onChange={onChange}
+                      value={value}
+                    />
+                  )}
+                />
+              </Box>
             </ContainerInput>
 
             <ContainerInput>
@@ -115,7 +138,7 @@ const ProfileInformation: React.FC<Props> = ({ control, errors }) => {
             <ContainerInput>
               <TextLabelInput label={'Thành phố'} />
               <Controller
-                name="city"
+                name="m_location_id"
                 control={control}
                 render={({ field: { onChange, value } }) => (
                   <Select fullWidth options={locationOptions} onChange={onChange} value={value} />
@@ -126,10 +149,37 @@ const ProfileInformation: React.FC<Props> = ({ control, errors }) => {
             <ContainerInput>
               <TextLabelInput label={'Trình độ học vấn'} />
               <Controller
-                name="city"
+                name="m_education_level_id"
                 control={control}
                 render={({ field: { onChange, value } }) => (
-                  <Select fullWidth options={locationOptions} onChange={onChange} value={value} />
+                  <Select fullWidth options={educationOptions} onChange={onChange} value={value} />
+                )}
+              />
+            </ContainerInput>
+
+            <ContainerInput>
+              <TextLabelInput label={'Số năm kinh nghiệm'} />
+              <Controller
+                name="m_experience_id"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Select fullWidth options={experienceOptions} onChange={onChange} value={value} />
+                )}
+              />
+            </ContainerInput>
+
+            <ContainerInput>
+              <TextLabelInput label={'Hình thức làm việc'} />
+              <Controller
+                name="m_working_form_id"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Select
+                    fullWidth
+                    options={WorkingFormOptions}
+                    onChange={onChange}
+                    value={value}
+                  />
                 )}
               />
             </ContainerInput>

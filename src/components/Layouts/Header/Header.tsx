@@ -29,7 +29,7 @@ export const Header = () => {
                 fontWeight: 'bold',
               }}
             >
-              B-CV
+              <StyledLink to="/">B-CV</StyledLink>
             </Typography>
 
             <Stack direction="row" sx={{ marginLeft: '40px', gap: '20px' }}>

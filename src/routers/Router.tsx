@@ -7,6 +7,7 @@ import { useAuth } from '@/libs/hooks'
 import { ROLE } from '@/libs/utils/constant'
 import { Home, NotFound } from '@/screens'
 import { Login } from '@/screens/auth'
+import { ListCompany } from '@/screens/company'
 import { Forbidden } from '@/screens/forbidden'
 import { JobDetail, JobList } from '@/screens/job'
 import { ResumeDetail } from '@/screens/resume'
@@ -56,6 +57,11 @@ export const routers: IRoute[] = [
     element: <div>news</div>,
     permissions: [],
     requiredAuth: true,
+  },
+  {
+    path: '/companies',
+    element: <ListCompany />,
+    permissions: [],
   },
 
   ...resumeRouters,

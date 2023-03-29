@@ -32,13 +32,12 @@ export const useAuth = () => {
     useCallback(async () => {
       try {
         const token = JSON.parse(localStorage.getItem('user-token') || 'null')
-
         if (token?.access_token) {
           const res = await userApi()
 
           setUser(res?.data)
-          setIsFetchAuth(false)
         }
+        setIsFetchAuth(false)
       } catch (error) {
         setUser(null)
         setIsFetchAuth(false)

@@ -13,7 +13,7 @@ export const Header = () => {
   const { auth } = useAuth()
 
   return (
-    <Box sx={{ backgroundColor: '#fff' }}>
+    <Box sx={{ backgroundColor: '#fff', padding: '16px 0' }}>
       <Container maxWidth="xl">
         <Stack
           direction="row"
@@ -33,9 +33,13 @@ export const Header = () => {
             </Typography>
 
             <Stack direction="row" sx={{ marginLeft: '40px', gap: '20px' }}>
-              <NavbarItem>Việc làm</NavbarItem>
+              <NavbarItem>
+                <StyledLink to="/jobs">Việc làm</StyledLink>
+              </NavbarItem>
               <NavbarItem>Hồ sơ & CV</NavbarItem>
-              <NavbarItem>Công ty</NavbarItem>
+              <NavbarItem>
+                <StyledLink to="/companies">Công ty</StyledLink>
+              </NavbarItem>
             </Stack>
           </BoxAlignCenter>
 

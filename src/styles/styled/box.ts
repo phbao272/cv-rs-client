@@ -28,3 +28,10 @@ export const ChipStyled = styled(Chip)({
   fontSize: '12px',
   fontWeight: 700,
 })
+
+export const ContainerInput = styled(Box)({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginBottom: '20px',
+})

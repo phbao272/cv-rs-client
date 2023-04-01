@@ -3,3 +3,5 @@ export const ROLE = {
   CANDIDATE: 1,
   COMPANY: 2,
 }
+
+export const STATUS_JOB = ['Đã hết hạn', 'Đang tuyển']

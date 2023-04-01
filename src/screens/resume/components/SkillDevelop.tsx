@@ -5,11 +5,11 @@ import React from 'react'
 import { Control, Controller, FieldErrors } from 'react-hook-form'
 
 import { MultiSelect, OptionType } from '@/components/Input'
+import { TextLabelInput } from '@/components/Input'
 import { ISkill } from '@/libs/types'
 
 import { ResumeType } from '../types'
 import { ContainerInput, TextHeader } from './styled'
-import { TextLabelInput } from './TextLabelInput'
 
 interface Props {
   control: Control<ResumeType, object>

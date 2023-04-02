@@ -16,7 +16,8 @@ import { EmptyTable } from './EmptyTable'
 interface TableProperties<T extends object> extends TableOptions<T> {
   isSuccess?: boolean
   isLoading?: boolean
-  onRowClick?(row: RowProps<T>): void
+  onRowClick?: (row: RowProps<T>) => void
+  onAddClick?: () => void
 }
 
 const Styles = styled.div`
@@ -90,7 +91,7 @@ const Styles = styled.div`
 `
 
 function ReactTable<T extends object>(props: Omit<TableProperties<T>, 'getCoreRowModel'>) {
-  const { columns, data, isLoading, onRowClick } = props
+  const { columns, data, isLoading, onRowClick, onAddClick } = props
 
   const hasRowClick = typeof onRowClick === 'function'
 
@@ -106,7 +107,7 @@ function ReactTable<T extends object>(props: Omit<TableProperties<T>, 'getCoreRo
     <EmptyTable />
   ) : (
     <Box>
-      <ButtonAdd sx={{ marginBottom: '24px' }} />
+      <ButtonAdd sx={{ marginBottom: '24px' }} onClick={onAddClick} />
 
       <Styles>
         <table>

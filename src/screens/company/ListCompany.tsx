@@ -13,8 +13,6 @@ export const ListCompany = () => {
     },
   })
 
-  console.log(isLoading)
-
   return (
     <BoxAlignCenterVertical>
       <TextHeader>Danh sách công ty</TextHeader>

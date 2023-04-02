@@ -15,7 +15,6 @@ import {
   Select,
   TextLabelInput,
 } from '@/components/Input'
-import { queryClient } from '@/libs/react-query'
 import { request } from '@/libs/request'
 import { IBaseMaster, IJob, ISkill } from '@/libs/types'
 import { formatDate } from '@/libs/utils'
@@ -132,9 +131,7 @@ export const JobForm = () => {
       }
     },
     onSuccess: () => {
-      console.log('onSuccess')
-      // navigate('/my-job')
-      queryClient.prefetchQuery(['my-job'])
+      navigate('/my-job')
     },
   })
 
@@ -142,7 +139,7 @@ export const JobForm = () => {
     mutation.mutate(data)
   }
 
-  return isLoadingJob ? (
+  return isLoadingJob && job_id ? (
     <p>Loading...</p>
   ) : (
     <>

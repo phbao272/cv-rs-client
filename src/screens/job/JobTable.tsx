@@ -78,6 +78,10 @@ export const JobTable = () => {
     navigate(`edit/${row.original.id}`)
   }
 
+  const handleOnAddClick = () => {
+    navigate(`new`)
+  }
+
   return (
     <BoxAlignCenterVertical sx={{ padding: '20px', marginTop: '24px', backgroundColor: '#fff' }}>
       <TextHeader>Danh sách việc làm</TextHeader>
@@ -86,6 +90,7 @@ export const JobTable = () => {
         columns={columns}
         isLoading={isLoading}
         onRowClick={handleOnRowClick}
+        onAddClick={handleOnAddClick}
       />
     </BoxAlignCenterVertical>
   )

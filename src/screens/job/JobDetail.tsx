@@ -1,12 +1,13 @@
 import { Avatar, Box, Grid, Typography } from '@mui/material'
-import { useQuery } from '@tanstack/react-query'
-import React from 'react'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import PhotoDefault from '@/assets/images/logo-default.png'
 import { ButtonLiked } from '@/components/Button'
 import { ButtonApplied } from '@/components/Button/ButtonApplied'
-import { IJob, JobDetailParams } from '@/libs/types'
+import { request } from '@/libs/request'
+import { IInteractionJob, IJob, JobDetailParams } from '@/libs/types'
 import { BoxAlignCenter, BoxAlignCenterVertical, ChipStyled } from '@/styles'
 import { colors } from '@/styles/colors'
 
@@ -24,12 +25,61 @@ const InfoItem = ({ title, value, icon }: { title: string; value: string; icon: 
 
 const JobDetail = () => {
   const params = useParams<JobDetailParams>()
+  const [liked, setLiked] = React.useState(false)
+  const [applied, setApplied] = React.useState(false)
 
   const { isLoading: isLoadingJob, data: job } = useQuery<IJob>([`get-job/${params.job_id}`], {
     enabled: !!params.job_id,
   })
 
-  console.log('data', job)
+  useQuery<IInteractionJob>([`get-interaction-job?job_id=${params.job_id}`], {
+    onSuccess: (res) => {
+      setLiked(!!res?.liked)
+      setApplied(!!res?.applied)
+    },
+  })
+
+  const { mutate: calcRatingClick } = useMutation({
+    mutationFn: async () => {
+      const res = await request.post(`calc-rating-click`, {
+        job_id: params.job_id,
+      })
+
+      console.log('calcRatingClick', res)
+    },
+  })
+
+  const { mutate: calcRatingAppliedLiked } = useMutation({
+    mutationFn: async (d: any) => {
+      const res = await request.post(`calc-rating-applied-liked`, {
+        ...d,
+      })
+
+      console.log('calcRatingAppliedLiked', res.data)
+    },
+  })
+
+  useEffect(() => {
+    calcRatingClick()
+  }, [])
+
+  const handleOnClickLiked = () => {
+    setLiked(!liked)
+    calcRatingAppliedLiked({
+      job_id: params.job_id,
+      liked: !liked,
+      type: 'liked',
+    })
+  }
+
+  const handleOnClickApplied = () => {
+    setApplied(!applied)
+    calcRatingAppliedLiked({
+      job_id: params.job_id,
+      applied: !applied,
+      type: 'applied',
+    })
+  }
 
   return (
     <Box sx={{ marginTop: '24px' }}>
@@ -82,8 +132,8 @@ const JobDetail = () => {
               <Typography sx={{ fontSize: 14 }}>Hạn nộp hồ sơ: {job?.deadline}</Typography>
             </BoxAlignCenterVertical>
             <BoxAlignCenterVertical sx={{ gap: '16px' }}>
-              <ButtonApplied />
-              <ButtonLiked />
+              <ButtonApplied applied={applied} onClick={handleOnClickApplied} />
+              <ButtonLiked liked={liked} onClick={handleOnClickLiked} />
             </BoxAlignCenterVertical>
           </BoxAlignCenter>
 

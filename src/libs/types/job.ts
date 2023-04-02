@@ -23,3 +23,13 @@ export interface IJob {
   working_form: IBaseMaster
   skills: ISkill[]
 }
+
+export interface IInteractionJob {
+  id: number
+  number_of_click: number
+  applied: number
+  liked: number
+  rating: number
+  job_id: number
+  user_id: number
+}

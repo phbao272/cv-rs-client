@@ -5,9 +5,11 @@ import { IoPaperPlaneOutline } from 'react-icons/io5'
 import { BoxSpaceCenter } from '@/styles'
 import { colors } from '@/styles/colors'
 
-interface Props extends BoxProps {}
+interface Props extends BoxProps {
+  applied?: boolean
+}
 
-export const ButtonApplied: React.FC<Props> = ({ sx, ...props }) => {
+export const ButtonApplied: React.FC<Props> = ({ sx, applied, ...props }) => {
   return (
     <BoxSpaceCenter
       sx={{
@@ -29,7 +31,7 @@ export const ButtonApplied: React.FC<Props> = ({ sx, ...props }) => {
       {...props}
     >
       <IoPaperPlaneOutline size={24} style={{ marginRight: '16px' }} />
-      Ứng tuyển ngay
+      {applied ? 'Đã ứng tuyển' : 'Ứng tuyển ngay'}
     </BoxSpaceCenter>
   )
 }

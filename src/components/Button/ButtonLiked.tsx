@@ -1,13 +1,15 @@
 import { BoxProps } from '@mui/material'
 import React from 'react'
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 
 import { BoxSpaceCenter } from '@/styles'
 import { colors } from '@/styles/colors'
 
-interface Props extends BoxProps {}
+interface Props extends BoxProps {
+  liked?: boolean
+}
 
-export const ButtonLiked: React.FC<Props> = ({ sx, ...props }) => {
+export const ButtonLiked: React.FC<Props> = ({ sx, liked, ...props }) => {
   return (
     <BoxSpaceCenter
       sx={{
@@ -28,7 +30,11 @@ export const ButtonLiked: React.FC<Props> = ({ sx, ...props }) => {
       }}
       {...props}
     >
-      <AiOutlineHeart size={24} style={{ marginRight: '16px' }} />
+      {liked ? (
+        <AiFillHeart size={24} style={{ marginRight: '16px' }} />
+      ) : (
+        <AiOutlineHeart size={24} style={{ marginRight: '16px' }} />
+      )}
       Lưu tin
     </BoxSpaceCenter>
   )

@@ -9,8 +9,6 @@ async function authRequestInterceptor(config: any) {
     const token: any = _token
     config.headers.authorization = `Bearer ${token.access_token}`
     config.headers.common['Accept-Language'] = localStorage.getItem('language')
-
-    // console.log(`Bearer ${token}`)
   }
   return config
 }

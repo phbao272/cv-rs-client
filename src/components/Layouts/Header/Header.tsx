@@ -3,7 +3,7 @@ import { Stack } from '@mui/system'
 import React from 'react'
 
 import { useAuth } from '@/libs/hooks'
-import { BoxAlignCenter } from '@/styles'
+import { BoxAlignCenter, Logo } from '@/styles'
 import { colors } from '@/styles/colors'
 import { StyledLink } from '@/styles/styled/misc'
 
@@ -23,14 +23,9 @@ export const Header = () => {
           }}
         >
           <BoxAlignCenter>
-            <Typography
-              sx={{
-                fontSize: '20px',
-                fontWeight: 'bold',
-              }}
-            >
+            <Logo>
               <StyledLink to="/">B-CV</StyledLink>
-            </Typography>
+            </Logo>
 
             <Stack direction="row" sx={{ marginLeft: '40px', gap: '20px' }}>
               <NavbarItem>

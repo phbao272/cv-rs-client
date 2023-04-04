@@ -28,7 +28,13 @@ const BoxJob: React.FC<BoxJobProps> = ({ job_id, company_id, ...props }) => {
         <Avatar
           variant="square"
           src={props.photo || PhotoDefault}
-          sx={{ border: '1px solid #e9eaec', width: '46px', height: '46px', borderRadius: '4px' }}
+          sx={{
+            border: '1px solid #e9eaec',
+            width: '46px',
+            height: '46px',
+            borderRadius: '4px',
+            '& .MuiAvatar-img': { objectFit: 'contain' },
+          }}
         />
         <Stack>
           <StyledLink to={`/jobs/${job_id}`}>

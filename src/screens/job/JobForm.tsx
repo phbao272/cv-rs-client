@@ -322,9 +322,7 @@ export const JobForm = () => {
           <ButtonSave
             onClick={handleSubmit(onSubmit)}
             sx={{ marginTop: '24px', alignSelf: 'flex-end' }}
-          >
-            Click
-          </ButtonSave>
+          />
         </Box>
       </Box>
     </>

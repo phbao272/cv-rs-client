@@ -3,6 +3,7 @@ import { Box } from '@mui/system'
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { Control, Controller, FieldErrors } from 'react-hook-form'
+import { AiOutlinePlusCircle } from 'react-icons/ai'
 
 import { DatePicker, Input, OptionType, Select } from '@/components/Input'
 import { TextLabelInput } from '@/components/Input'
@@ -186,7 +187,41 @@ const ProfileInformation: React.FC<Props> = ({ control, errors }) => {
           </Grid>
 
           <Grid item xs={3}>
-            <Box sx={{ height: '200px', backgroundColor: 'gray' }}>Anh dai dien</Box>
+            <Box
+              sx={{
+                width: '165px',
+                height: '200px',
+                backgroundColor: 'white',
+                border: '1px solid #979797',
+                position: 'relative',
+              }}
+            >
+              <label htmlFor="my-input">
+                <Box
+                  sx={{
+                    height: '80%',
+                    width: '80%',
+                    backgroundColor: '#f2f2f2;',
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    border: '1px solid #979797',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <AiOutlinePlusCircle
+                    style={{
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                    }}
+                  />
+                  <input type="file" hidden id="my-input" />
+                </Box>
+              </label>
+            </Box>
           </Grid>
         </Grid>
       </Paper>

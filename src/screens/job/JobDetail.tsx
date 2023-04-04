@@ -96,6 +96,8 @@ const JobDetail = () => {
                 width: '110px',
                 height: '110px',
                 borderRadius: '50%',
+
+                '& .MuiAvatar-img': { objectFit: 'contain' },
               }}
             />
             <BoxAlignCenterVertical

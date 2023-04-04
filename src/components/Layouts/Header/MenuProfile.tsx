@@ -41,6 +41,7 @@ export function MenuProfile() {
       if (auth) {
         await logout()
         handleClose()
+        navigate('/login')
       }
     } catch (error) {
       console.log('err', error)

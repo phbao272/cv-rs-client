@@ -11,6 +11,7 @@ import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '@/libs/hooks'
+import { Logo, StyledLink } from '@/styles'
 const theme = createTheme()
 
 export const Login = () => {
@@ -51,6 +52,10 @@ export const Login = () => {
             alignItems: 'center',
           }}
         >
+          <Logo sx={{ marginBottom: '20px' }}>
+            <StyledLink to="/">B-CV</StyledLink>
+          </Logo>
+
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>

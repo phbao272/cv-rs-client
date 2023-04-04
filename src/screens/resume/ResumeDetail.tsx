@@ -1,10 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from '@mui/material'
+import { Box } from '@mui/material'
 import { Stack } from '@mui/system'
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 
+import { ButtonSave } from '@/components/Button'
 import { request } from '@/libs/request'
 import { IResume } from '@/libs/types'
 import { formatDate } from '@/libs/utils'
@@ -73,8 +75,12 @@ const ResumeDetail = () => {
       }
 
       console.log('res', res)
+
+      toast.success('Lưu thông tin thành công')
     } catch (err) {
       console.log(err)
+
+      toast.error(err as string)
     }
   }
 
@@ -84,7 +90,12 @@ const ResumeDetail = () => {
       <ProfileInformation control={control} errors={errors} />
       <SkillDevelop control={control} errors={errors} />
 
-      <Button onClick={handleSubmit(onSubmit)}>Click</Button>
+      <Box sx={{ display: 'flex', justifyContent: 'left' }}>
+        <ButtonSave
+          onClick={handleSubmit(onSubmit)}
+          sx={{ marginTop: '24px', alignSelf: 'flex-end' }}
+        />
+      </Box>
     </Stack>
   )
 }

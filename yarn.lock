@@ -1187,7 +1187,7 @@ chalk@^4.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-clsx@^1.2.1:
+clsx@^1.1.1, clsx@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
   integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
@@ -2655,10 +2655,12 @@ react-router@6.3.0:
   dependencies:
     history "^5.2.0"
 
-react-toast@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/react-toast/-/react-toast-1.0.3.tgz#cbe2cd946c5762736642dd2981a7e5d666c5448e"
-  integrity sha512-gL3+O5hlLaoBmd36oXWKrjFeUyLCMQ04AIh48LrnUvdeg2vhJQ0E803TgVemgJvYUXKlutMVn9+/QS2DDnk26Q==
+react-toastify@^9.1.2:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-9.1.2.tgz#293aa1f952240129fe485ae5cb2f8d09c652cf3f"
+  integrity sha512-PBfzXO5jMGEtdYR5jxrORlNZZe/EuOkwvwKijMatsZZm8IZwLj01YvobeJYNjFcA6uy6CVrx2fzL9GWbhWPTDA==
+  dependencies:
+    clsx "^1.1.1"
 
 react-transition-group@^4.4.5:
   version "4.4.5"

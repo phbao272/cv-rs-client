@@ -2,10 +2,12 @@ import { Avatar, Box, Grid, Typography } from '@mui/material'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import PhotoDefault from '@/assets/images/logo-default.png'
 import { ButtonLiked } from '@/components/Button'
 import { ButtonApplied } from '@/components/Button/ButtonApplied'
+import { useAuth } from '@/libs/hooks'
 import { request } from '@/libs/request'
 import { IInteractionJob, IJob, JobDetailParams } from '@/libs/types'
 import { BoxAlignCenter, BoxAlignCenterVertical, ChipStyled } from '@/styles'
@@ -24,6 +26,8 @@ const InfoItem = ({ title, value, icon }: { title: string; value: string; icon: 
 }
 
 const JobDetail = () => {
+  const { auth } = useAuth()
+  const navigate = useNavigate()
   const params = useParams<JobDetailParams>()
   const [liked, setLiked] = React.useState(false)
   const [applied, setApplied] = React.useState(false)
@@ -37,6 +41,7 @@ const JobDetail = () => {
       setLiked(!!res?.liked)
       setApplied(!!res?.applied)
     },
+    enabled: !!params.job_id && !!auth,
   })
 
   const { mutate: calcRatingClick } = useMutation({
@@ -60,25 +65,35 @@ const JobDetail = () => {
   })
 
   useEffect(() => {
-    calcRatingClick()
+    if (auth) {
+      calcRatingClick()
+    }
   }, [])
 
   const handleOnClickLiked = () => {
-    setLiked(!liked)
-    calcRatingAppliedLiked({
-      job_id: params.job_id,
-      liked: !liked,
-      type: 'liked',
-    })
+    if (!auth) {
+      navigate('/login')
+    } else {
+      setLiked(!liked)
+      calcRatingAppliedLiked({
+        job_id: params.job_id,
+        liked: !liked,
+        type: 'liked',
+      })
+    }
   }
 
   const handleOnClickApplied = () => {
-    setApplied(!applied)
-    calcRatingAppliedLiked({
-      job_id: params.job_id,
-      applied: !applied,
-      type: 'applied',
-    })
+    if (!auth) {
+      navigate('/login')
+    } else {
+      setApplied(!applied)
+      calcRatingAppliedLiked({
+        job_id: params.job_id,
+        applied: !applied,
+        type: 'applied',
+      })
+    }
   }
 
   return (

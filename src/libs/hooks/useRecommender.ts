@@ -22,7 +22,7 @@ export const useRecommender = () => {
     async () => {
       if (!user?.resume?.id) return Promise.resolve([])
 
-      const res = await axios.get(`${baseDjangoURL}/get-by-cbf?resume_id=${user?.resume?.id}`)
+      const res = await axios.get(`${baseDjangoURL}/get-recommend?user_id=${user?.resume?.id}`)
 
       return res.data
     },

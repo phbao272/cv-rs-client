@@ -8,7 +8,7 @@ export const Layout = () => {
   return (
     <div style={{ backgroundColor: '#f2f2f2' }}>
       <Header />
-      <Container maxWidth="lg" sx={{ minHeight: '100vh' }}>
+      <Container maxWidth="lg" sx={{ minHeight: '100vh', marginTop: '86px' }}>
         <Outlet />
       </Container>
       <Footer />

@@ -13,7 +13,18 @@ export const Header = () => {
   const { auth } = useAuth()
 
   return (
-    <Box sx={{ backgroundColor: '#fff', padding: '16px 0' }}>
+    <Box
+      sx={{
+        backgroundColor: '#fff',
+        padding: '16px 0',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+        boxShadow: '#959da533 0 8px 24px',
+      }}
+    >
       <Container maxWidth="xl">
         <Stack
           direction="row"

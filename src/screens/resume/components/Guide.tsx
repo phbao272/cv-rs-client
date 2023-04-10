@@ -15,13 +15,8 @@ const Guide = () => {
         các trường để trống sẽ không được hiển thị trên CV.
       </TextGuide>
       <TextGuide>
-        - Các mục: Thông tin cá nhân, Giới thiệu bản thân, Kinh nghiệm làm việc, Kỹ năng lập trình
-        và Học vấn là 05 mục mặc định, không được tùy chỉnh thứ tự hiển thị trên CV. Các mục ở phần
-        Thông tin khác có thể tùy chỉnh thứ tự và chọn Thêm/ Xóa.
-      </TextGuide>
-      <TextGuide>
-        - Chọn Xem trước để xem các mẫu CV của bạn, chọn Mẫu và Lưu CV. Bạn cũng có thể tải xuống CV
-        dưới dạng PDF.
+        - Các mục: Thông tin cá nhân, Kỹ năng lập trình mục mặc định, không được tùy chỉnh thứ tự
+        hiển thị trên CV.
       </TextGuide>
     </Box>
   )

@@ -6,6 +6,7 @@ import { useCallback } from 'react'
 
 import { userAtom } from '../atoms'
 import { IJobDjango } from '../types'
+import { ROLE } from '../utils'
 
 export const baseDjangoURL = import.meta.env.VITE_BASE_URL_DJANGO_API
 
@@ -20,7 +21,7 @@ export const useRecommender = () => {
   } = useQuery<IJobDjango[]>(
     ['recommender'],
     async () => {
-      if (!user?.id) return Promise.resolve([])
+      if (!user?.id || user?.role != ROLE['CANDIDATE']) return Promise.resolve([])
 
       const res = await axios.get(`${baseDjangoURL}/get-recommend?user_id=${user?.id}`)
 

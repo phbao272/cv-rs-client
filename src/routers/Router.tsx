@@ -64,6 +64,11 @@ export const routers: IRoute[] = [
     requiredAuth: true,
   },
   {
+    path: '/jobs',
+    element: <div>JOBS</div>,
+    permissions: [],
+  },
+  {
     path: '/companies',
     element: <ListCompany />,
     permissions: [],

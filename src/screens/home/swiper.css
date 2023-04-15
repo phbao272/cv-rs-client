@@ -39,38 +39,36 @@
 }
 
 .swiper-hot-company {
-    position: relative;
+  position: relative;
 }
 
 .swiper-hot-company .swiper-button-next::after {
-    content: ">";
-    font-size: 30px !important;
-    font-weight: 600;
-    color: #1976d2!important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    top: -2px;
-    right: -1px;
-    cursor: pointer;
-    
+  content: '>';
+  font-size: 30px !important;
+  font-weight: 600;
+  color: #1976d2 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: -2px;
+  right: -1px;
+  cursor: pointer;
 }
 
 .swiper-hot-company .swiper-button-next {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  cursor: pointer;
 }
 
 .swiper-hot-company .swiper-button-next {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    z-index: 10;
-    transform: translateY(-50%);
-    cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 10;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
-

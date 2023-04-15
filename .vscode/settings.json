@@ -2,12 +2,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "cSpell.words": [
-    "Công",
-    "swiper",
-    "tanstack",
-    "Thành",
-    "toastify",
-    "việc"
-  ]
+  "cSpell.words": ["Công", "swiper", "tanstack", "Thành", "toastify", "việc"]
 }

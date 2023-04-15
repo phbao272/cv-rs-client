@@ -20,9 +20,9 @@ export const useRecommender = () => {
   } = useQuery<IJobDjango[]>(
     ['recommender'],
     async () => {
-      if (!user?.id) return Promise.resolve([])
+      // if (!user?.id) return Promise.resolve([])
 
-      const res = await axios.get(`${baseDjangoURL}/get-recommend?user_id=${user?.id}`)
+      const res = await axios.get(`${baseDjangoURL}/get-recommend?user_id=${user?.id || 0}`)
 
       return res.data
     },

@@ -15,7 +15,7 @@ export const TextEllipsis: React.FC<Props> = ({ lineClamp = 1, children, ...prop
         WebkitBoxOrient: 'vertical',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
-
+        textAlign: 'left',
         ...props.sx,
       }}
     >

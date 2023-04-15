@@ -3,7 +3,7 @@ import React from 'react'
 
 import PhotoDefault from '@/assets/images/logo-default.png'
 import { TextEllipsis } from '@/components/Text'
-import { ISkillDjango } from '@/libs/types'
+import { ISkill } from '@/libs/types'
 import { BoxAlignCenter, ChipStyled, StyledLink } from '@/styles'
 
 interface BoxJobFullProps {
@@ -15,7 +15,7 @@ interface BoxJobFullProps {
   salary: string
   photo?: string
   description?: string
-  skills: ISkillDjango[]
+  skills: ISkill[]
 }
 
 const BoxJobFull: React.FC<BoxJobFullProps> = ({ job_id, description, ...props }) => {
@@ -77,7 +77,7 @@ const BoxJobFull: React.FC<BoxJobFullProps> = ({ job_id, description, ...props }
           <ChipStyled label={props.location} size="small" />
           <ChipStyled label={props.salary} size="small" />
           {props.skills.map((skill, index) => (
-            <ChipStyled key={index} label={skill.m_skill__name} size="small" />
+            <ChipStyled key={index} label={skill.name} size="small" />
           ))}
         </BoxAlignCenter>
       </Stack>

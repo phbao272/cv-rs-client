@@ -21,9 +21,17 @@ interface Props<T> {
   value: T[]
   menuProps?: MenuProps
   fullWidth?: boolean
+  placeholder?: string
 }
 
-const MultiSelect = <T,>({ options, onChange, value, menuProps, ...props }: Props<T>) => {
+const MultiSelect = <T,>({
+  options,
+  onChange,
+  value,
+  menuProps,
+  placeholder,
+  ...props
+}: Props<T>) => {
   const [newOptions, setNewOptions] = useState<OptionType[]>(options)
 
   const [isOpenOptions, setIsOpenOptions] = useState(false)
@@ -65,6 +73,14 @@ const MultiSelect = <T,>({ options, onChange, value, menuProps, ...props }: Prop
           maxHeight: 250,
         },
         ...menuProps,
+      }}
+      sx={{
+        '& .MuiSelect-select .notranslate::after': placeholder
+          ? {
+              content: `"${placeholder}"`,
+              opacity: 0.42,
+            }
+          : {},
       }}
       renderValue={(selected) => (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>

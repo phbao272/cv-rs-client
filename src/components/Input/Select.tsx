@@ -12,9 +12,17 @@ interface Props<T> {
   value: T
   menuProps?: MenuProps
   fullWidth?: boolean
+  placeholder?: string
 }
 
-const Select = <T,>({ options, onChange, value, menuProps, fullWidth = true }: Props<T>) => {
+const Select = <T,>({
+  options,
+  onChange,
+  value,
+  menuProps,
+  fullWidth = true,
+  placeholder,
+}: Props<T>) => {
   const [isOpenOptions, setIsOpenOptions] = useState(false)
 
   const handleClose = () => {
@@ -42,6 +50,14 @@ const Select = <T,>({ options, onChange, value, menuProps, fullWidth = true }: P
           maxHeight: 250,
         },
         ...menuProps,
+      }}
+      sx={{
+        '& .MuiSelect-select .notranslate::after': placeholder
+          ? {
+              content: `"${placeholder}"`,
+              opacity: 0.42,
+            }
+          : {},
       }}
     >
       {options.map((option) => (

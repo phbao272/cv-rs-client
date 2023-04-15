@@ -4,4 +4,6 @@ export interface ICompany {
   description: string
   photo?: string
   user_id: number
+
+  jobs_count?: number
 }

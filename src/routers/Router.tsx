@@ -7,6 +7,7 @@ import { useAuth } from '@/libs/hooks'
 import { ROLE } from '@/libs/utils/constant'
 import { Home, NotFound } from '@/screens'
 import { Login } from '@/screens/auth'
+import { ComingSoon } from '@/screens/coming_soon'
 import { ListCompany } from '@/screens/company'
 import { Forbidden } from '@/screens/forbidden'
 import { JobDetail, JobForm, JobTable } from '@/screens/job'
@@ -58,10 +59,19 @@ export const routers: IRoute[] = [
     permissions: [],
   },
   {
-    path: '/news',
-    element: <div>news</div>,
+    path: '/jobs',
+    element: <ComingSoon />,
     permissions: [],
-    requiredAuth: true,
+  },
+  {
+    path: '/cv',
+    element: <ComingSoon />,
+    permissions: [],
+  },
+  {
+    path: '/blog',
+    element: <ComingSoon />,
+    permissions: [],
   },
   {
     path: '/companies',
@@ -138,8 +148,8 @@ export const Router = () => {
           }
         })}
         <Route index element={<Home />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
-      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }

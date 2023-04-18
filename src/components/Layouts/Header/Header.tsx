@@ -42,9 +42,14 @@ export const Header = () => {
               <NavbarItem>
                 <StyledLink to="/jobs">Việc làm</StyledLink>
               </NavbarItem>
-              <NavbarItem>Hồ sơ & CV</NavbarItem>
+              <NavbarItem>
+                <StyledLink to="/cv">Hồ sơ & CV</StyledLink>
+              </NavbarItem>
               <NavbarItem>
                 <StyledLink to="/companies">Công ty</StyledLink>
+              </NavbarItem>
+              <NavbarItem>
+                <StyledLink to="/blog">Blog IT</StyledLink>
               </NavbarItem>
             </Stack>
           </BoxAlignCenter>

@@ -1,5 +1,6 @@
 import Logout from '@mui/icons-material/Logout'
 import Settings from '@mui/icons-material/Settings'
+import { Badge, Typography } from '@mui/material'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
@@ -9,8 +10,10 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Tooltip from '@mui/material/Tooltip'
 import * as React from 'react'
+import { BiBell } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
 
+import AvatarDefault from '@/assets/images/avatar-default.png'
 import { useAuth } from '@/libs/hooks'
 import { ROLE } from '@/libs/utils/constant'
 
@@ -85,6 +88,15 @@ export function MenuProfile() {
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+        <Badge badgeContent={4} color="primary">
+          <BiBell
+            size="24px"
+            style={{
+              cursor: 'pointer',
+            }}
+          />
+        </Badge>
+
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
@@ -94,9 +106,21 @@ export function MenuProfile() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>B</Avatar>
+            <Avatar src={AvatarDefault} sx={{ width: 32, height: 32 }} />
           </IconButton>
         </Tooltip>
+
+        <Typography
+          sx={{
+            color: '#333',
+            fontWeight: 'bold',
+            fontSize: '14px',
+            marginLeft: '4px',
+          }}
+          variant="body2"
+        >
+          {user?.name}
+        </Typography>
       </Box>
       <Menu
         anchorEl={anchorEl}

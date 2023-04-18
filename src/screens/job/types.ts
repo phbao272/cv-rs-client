@@ -12,6 +12,7 @@ export const JobSchema = z.object({
   m_experience_id: z.number(),
   m_working_form_id: z.number(),
   m_salary_id: z.number(),
+  m_job_id: z.number(),
 
   skills: z.array(z.number()),
 })

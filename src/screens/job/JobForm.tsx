@@ -87,6 +87,13 @@ export const JobForm = () => {
     },
   })
 
+  const [jobOptions, setJobOptions] = React.useState<OptionType[]>([])
+  useQuery<IBaseMaster[]>(['m-job'], {
+    onSuccess(data) {
+      setJobOptions(data.map((item) => ({ label: item.name, value: item.id })))
+    },
+  })
+
   const { isLoading: isLoadingJob } = useQuery<IJob>([`get-job/${job_id}`], {
     onSuccess: (data) => {
       console.log(data)
@@ -102,6 +109,7 @@ export const JobForm = () => {
       )
 
       setValue('m_location_id', data.m_location_id)
+      setValue('m_job_id', data.m_job_id)
       setValue('m_education_level_id', data.m_education_level_id)
       setValue('m_experience_id', data.m_experience_id)
       setValue('m_working_form_id', data.m_working_form_id)
@@ -189,6 +197,17 @@ export const JobForm = () => {
                   multiline
                   rows={5}
                 />
+              )}
+            />
+          </ContainerInput>
+
+          <ContainerInput>
+            <TextLabelInput style={{ width: '200px' }} label={'Lĩnh vực'} />
+            <Controller
+              name="m_job_id"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Select fullWidth options={jobOptions} onChange={onChange} value={value} />
               )}
             />
           </ContainerInput>
